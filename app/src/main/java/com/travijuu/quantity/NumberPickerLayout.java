@@ -25,17 +25,15 @@ public class NumberPickerLayout extends LinearLayout {
     private int minValue;
     private int maxValue;
     private int unit;
+    private int currentValue;
 
     private Context mContext;
     private Button decrementButton;
     private Button incrementButton;
     private TextView display;
 
-    private int currentValue;
-
     private LimitExceededListener limitExceededListener;
-
-
+    
     public NumberPickerLayout(Context context) {
         super(context, null);
     }
@@ -100,7 +98,7 @@ public class NumberPickerLayout extends LinearLayout {
     public void setValue(int value) {
         if (value < this.minValue || value > this.maxValue) {
             //TODO: limitExceeded
-            limitExceededListener.limitExceeded(value < this.minValue ? this.minValue : this.maxValue);
+            limitExceededListener.limitExceeded(value < this.minValue ? this.minValue : this.maxValue, value);
             return;
         }
 
@@ -110,7 +108,7 @@ public class NumberPickerLayout extends LinearLayout {
 
     public void increment() {
         if (this.currentValue + this.unit > this.maxValue) {
-            limitExceededListener.limitExceeded(this.maxValue);
+            limitExceededListener.limitExceeded(this.maxValue, this.currentValue + this.unit);
             return;
         }
 
@@ -120,7 +118,7 @@ public class NumberPickerLayout extends LinearLayout {
 
     public void decrement() {
         if (this.currentValue - this.unit < this.minValue) {
-            limitExceededListener.limitExceeded(this.minValue);
+            limitExceededListener.limitExceeded(this.minValue, this.currentValue - this.unit);
             return;
         }
 
