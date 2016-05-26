@@ -9,8 +9,8 @@ import com.travijuu.quantity.Interface.ValueLimitExceededInterface;
  */
 public class LimitExceededListener implements ValueLimitExceededInterface {
 
-    public void limitExceeded(int limit) {
+    public void limitExceeded(int limit, int exceededValue) {
 
-        Log.d(this.getClass().toString(), "limitExceeded: " + limit);
+        Log.d(this.getClass().toString(), "limit: " + limit + " - value: " + exceededValue);
     }
 }

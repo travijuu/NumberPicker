@@ -5,5 +5,5 @@ package com.travijuu.quantity.Interface;
  */
 public interface ValueLimitExceededInterface {
 
-    public void limitExceeded(int limit);
+    public void limitExceeded(int limit, int exceededValue);
 }
