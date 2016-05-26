@@ -5,5 +5,11 @@
         <attr name="min" format="integer"/>
         <attr name="max" format="integer"/>
         <attr name="value" format="integer"/>
+        <attr name="unit" format="integer" />
     </declare-styleable>
+
+    <declare-styleable name="Themes">
+        <attr name="NumberPickerLayout" format="reference"/>
+    </declare-styleable>
+
 </resources>

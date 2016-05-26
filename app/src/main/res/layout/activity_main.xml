@@ -13,7 +13,10 @@
     <com.travijuu.quantity.NumberPickerLayout
         android:id="@+id/number_picker"
         android:layout_width="130dp"
-
+        custom:min="5"
+        custom:max="15"
+        custom:value="10"
+        custom:unit="2"
         android:layout_height="40dp"/>
 
 </LinearLayout>
