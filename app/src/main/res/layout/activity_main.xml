@@ -17,6 +17,7 @@
         custom:max="15"
         custom:value="10"
         custom:unit="2"
+        custom:custom_layout="@layout/new_number_picker_layout"
         android:layout_height="40dp"/>
 
 </LinearLayout>
