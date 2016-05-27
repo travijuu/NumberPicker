@@ -21,26 +21,27 @@ public class NumberPickerLayout extends LinearLayout {
     private final int DEFAULT_MAX = 99999999;
     private final int DEFAULT_VALUE = 1;
     private final int DEFAULT_UNIT = 1;
+    private final int DEFAULT_LAYOUT = R.layout.number_picker_layout;
 
     private int minValue;
     private int maxValue;
     private int unit;
     private int currentValue;
+    private int layout;
 
     private Context mContext;
     private Button decrementButton;
     private Button incrementButton;
-    private TextView display;
+    private TextView displayTextView;
 
     private LimitExceededListener limitExceededListener;
-    
+
     public NumberPickerLayout(Context context) {
         super(context, null);
     }
 
     public NumberPickerLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        LayoutInflater.from(context).inflate(R.layout.number_picker_layout, this, true);
 
         TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.NumberPickerLayout, 0, 0);
 
@@ -48,12 +49,14 @@ public class NumberPickerLayout extends LinearLayout {
         this.maxValue = attributes.getInteger(R.styleable.NumberPickerLayout_max, this.DEFAULT_MAX);
         this.currentValue = attributes.getInteger(R.styleable.NumberPickerLayout_value, this.DEFAULT_VALUE);
         this.unit = attributes.getInteger(R.styleable.NumberPickerLayout_unit, this.DEFAULT_UNIT);
-
+        this.layout = attributes.getResourceId(R.styleable.NumberPickerLayout_custom_layout, this.DEFAULT_LAYOUT);
         this.mContext = context;
+
+        LayoutInflater.from(this.mContext).inflate(layout, this, true);
 
         this.decrementButton = (Button) findViewById(R.id.decrement);
         this.incrementButton = (Button) findViewById(R.id.increment);
-        this.display = (TextView) findViewById(R.id.display);
+        this.displayTextView = (TextView) findViewById(R.id.display);
 
         this.incrementButton.setOnClickListener(new ActionListener(this, ActionEnum.INCREMENT));
         this.decrementButton.setOnClickListener(new ActionListener(this, ActionEnum.DECREMENT));
@@ -97,7 +100,6 @@ public class NumberPickerLayout extends LinearLayout {
 
     public void setValue(int value) {
         if (value < this.minValue || value > this.maxValue) {
-            //TODO: limitExceeded
             limitExceededListener.limitExceeded(value < this.minValue ? this.minValue : this.maxValue, value);
             return;
         }
@@ -127,9 +129,8 @@ public class NumberPickerLayout extends LinearLayout {
     }
 
     private void update() {
-        this.display.setText(Integer.toString(this.currentValue));
+        this.displayTextView.setText(Integer.toString(this.currentValue));
     }
-
 }
 
 

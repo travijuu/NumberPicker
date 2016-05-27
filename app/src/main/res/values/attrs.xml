@@ -6,6 +6,7 @@
         <attr name="max" format="integer"/>
         <attr name="value" format="integer"/>
         <attr name="unit" format="integer" />
+        <attr name="custom_layout" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="Themes">
