@@ -1,4 +1,4 @@
-package com.travijuu.quantity.Enums;
+package com.travijuu.numberpicker.Enums;
 
 /**
  * Created by travijuu on 26/05/16.

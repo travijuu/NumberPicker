@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="NumberPickerLayout">
+    <declare-styleable name="NumberPicker">
         <attr name="min" format="integer"/>
         <attr name="max" format="integer"/>
         <attr name="value" format="integer"/>

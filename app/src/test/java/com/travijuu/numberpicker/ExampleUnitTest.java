@@ -1,4 +1,4 @@
-package com.travijuu.quantity;
+package com.travijuu.numberpicker;
 
 import org.junit.Test;
 

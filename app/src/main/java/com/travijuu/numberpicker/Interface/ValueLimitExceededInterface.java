@@ -1,4 +1,4 @@
-package com.travijuu.quantity.Interface;
+package com.travijuu.numberpicker.Interface;
 
 /**
  * Created by travijuu on 26/05/16.
