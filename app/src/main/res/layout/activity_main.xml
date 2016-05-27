@@ -8,9 +8,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.travijuu.quantity.MainActivity">
+    tools:context="com.travijuu.numberpicker.MainActivity">
 
-    <com.travijuu.quantity.NumberPickerLayout
+    <com.travijuu.numberpicker.NumberPicker
         android:id="@+id/number_picker"
         android:layout_width="130dp"
         custom:min="5"

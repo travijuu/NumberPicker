@@ -1,4 +1,4 @@
-package com.travijuu.quantity;
+package com.travijuu.numberpicker;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

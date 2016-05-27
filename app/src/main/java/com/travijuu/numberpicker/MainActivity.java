@@ -1,4 +1,4 @@
-package com.travijuu.quantity;
+package com.travijuu.numberpicker;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        NumberPickerLayout num = (NumberPickerLayout) findViewById(R.id.number_picker);
+        NumberPicker num = (NumberPicker) findViewById(R.id.number_picker);
 
     }
 }

@@ -1,4 +1,4 @@
-package com.travijuu.quantity;
+package com.travijuu.numberpicker;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -8,14 +8,14 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.travijuu.quantity.Enums.ActionEnum;
-import com.travijuu.quantity.Listener.ActionListener;
-import com.travijuu.quantity.Listener.LimitExceededListener;
+import com.travijuu.numberpicker.Enums.ActionEnum;
+import com.travijuu.numberpicker.Listener.ActionListener;
+import com.travijuu.numberpicker.Listener.LimitExceededListener;
 
 /**
  * Created by travijuu on 26/05/16.
  */
-public class NumberPickerLayout extends LinearLayout {
+public class NumberPicker extends LinearLayout {
 
     private final int DEFAULT_MIN = 0;
     private final int DEFAULT_MAX = 99999999;
@@ -36,20 +36,20 @@ public class NumberPickerLayout extends LinearLayout {
 
     private LimitExceededListener limitExceededListener;
 
-    public NumberPickerLayout(Context context) {
+    public NumberPicker(Context context) {
         super(context, null);
     }
 
-    public NumberPickerLayout(Context context, AttributeSet attrs) {
+    public NumberPicker(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.NumberPickerLayout, 0, 0);
+        TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.NumberPicker, 0, 0);
 
-        this.minValue = attributes.getInteger(R.styleable.NumberPickerLayout_min, this.DEFAULT_MIN);
-        this.maxValue = attributes.getInteger(R.styleable.NumberPickerLayout_max, this.DEFAULT_MAX);
-        this.currentValue = attributes.getInteger(R.styleable.NumberPickerLayout_value, this.DEFAULT_VALUE);
-        this.unit = attributes.getInteger(R.styleable.NumberPickerLayout_unit, this.DEFAULT_UNIT);
-        this.layout = attributes.getResourceId(R.styleable.NumberPickerLayout_custom_layout, this.DEFAULT_LAYOUT);
+        this.minValue = attributes.getInteger(R.styleable.NumberPicker_min, this.DEFAULT_MIN);
+        this.maxValue = attributes.getInteger(R.styleable.NumberPicker_max, this.DEFAULT_MAX);
+        this.currentValue = attributes.getInteger(R.styleable.NumberPicker_value, this.DEFAULT_VALUE);
+        this.unit = attributes.getInteger(R.styleable.NumberPicker_unit, this.DEFAULT_UNIT);
+        this.layout = attributes.getResourceId(R.styleable.NumberPicker_custom_layout, this.DEFAULT_LAYOUT);
         this.mContext = context;
 
         LayoutInflater.from(this.mContext).inflate(layout, this, true);
@@ -66,7 +66,7 @@ public class NumberPickerLayout extends LinearLayout {
         this.update();
     }
 
-    public NumberPickerLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public NumberPicker(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

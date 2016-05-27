@@ -1,8 +1,8 @@
-package com.travijuu.quantity.Listener;
+package com.travijuu.numberpicker.Listener;
 
 import android.util.Log;
 
-import com.travijuu.quantity.Interface.ValueLimitExceededInterface;
+import com.travijuu.numberpicker.Interface.ValueLimitExceededInterface;
 
 /**
  * Created by travijuu on 26/05/16.
