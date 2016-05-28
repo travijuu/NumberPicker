@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    xmlns:numberpicker="http://schemas.android.com/apk/res-auto"
+    tools:context="com.travijuu.numberpicker.sample.MainActivity">
+
+    <com.travijuu.numberpicker.library.NumberPicker
+        android:id="@+id/number_picker_default"
+        android:layout_width="130dp"
+        android:layout_height="40dp"/>
+
+    <com.travijuu.numberpicker.library.NumberPicker
+        android:id="@+id/number_picker_custom"
+        android:layout_width="130dp"
+        numberpicker:min="0"
+        numberpicker:max="10"
+        numberpicker:value="-5"
+        numberpicker:unit="1"
+        numberpicker:custom_layout="@layout/number_picker_custom_layout"
+        android:layout_height="40dp"/>
+
+</LinearLayout>
