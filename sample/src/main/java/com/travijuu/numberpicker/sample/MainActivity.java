@@ -17,6 +17,5 @@ public class MainActivity extends AppCompatActivity {
         numberPicker.setMin(5);
         numberPicker.setUnit(2);
         numberPicker.setValue(10);
-
     }
 }
