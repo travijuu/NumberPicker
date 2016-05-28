@@ -13,7 +13,6 @@
         android:textColor="@color/colorPrimary"
         android:background="@null"
         android:id="@+id/decrement"
-        style="?borderlessButtonStyle"
         android:textStyle="bold"
         android:text="—"/>
 
@@ -35,7 +34,6 @@
         android:textSize="25sp"
         android:textColor="@color/colorPrimary"
         android:background="@null"
-        style="?borderlessButtonStyle"
         android:id="@+id/increment"
         android:text="+"/>
 </LinearLayout>
