@@ -19,11 +19,11 @@
     <com.travijuu.numberpicker.library.NumberPicker
         android:id="@+id/number_picker_custom"
         android:layout_width="130dp"
+        android:layout_height="40dp"
         numberpicker:min="0"
         numberpicker:max="10"
         numberpicker:value="-5"
         numberpicker:unit="1"
-        numberpicker:custom_layout="@layout/number_picker_custom_layout"
-        android:layout_height="40dp"/>
+        numberpicker:custom_layout="@layout/number_picker_custom_layout"  />
 
 </LinearLayout>
