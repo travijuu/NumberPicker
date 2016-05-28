@@ -9,8 +9,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.travijuu.numberpicker.library.Enums.ActionEnum;
+import com.travijuu.numberpicker.library.Interface.LimitExceededListener;
 import com.travijuu.numberpicker.library.Listener.ActionListener;
-import com.travijuu.numberpicker.library.Listener.LimitExceededListener;
+import com.travijuu.numberpicker.library.Listener.DefaultLimitExceededListener;
 
 /**
  * Created by travijuu on 26/05/16.
@@ -83,7 +84,7 @@ public class NumberPicker extends LinearLayout {
         this.decrementButton.setOnClickListener(new ActionListener(this, ActionEnum.DECREMENT));
 
         // init listener for exceeding upper and lower limits
-        this.setLimitExceededListener(new LimitExceededListener());
+        this.setLimitExceededListener(new DefaultLimitExceededListener());
 
         // update ui view
         this.updateView();
