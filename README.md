@@ -3,7 +3,7 @@ NumberPicker [![Build Status](https://travis-ci.org/travijuu/NumberPicker.svg?br
 
 A simple customizable NumberPicker for Android.
 
-![](images/numberpicker.png)
+<img src="https://raw.githubusercontent.com/travijuu/NumberPicker/master/images/numberpicker.png" width=450/>
 
 Download
 --------
