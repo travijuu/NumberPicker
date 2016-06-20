@@ -132,6 +132,10 @@ public class NumberPicker extends LinearLayout {
         this.updateView();
     }
 
+    public int getValue() {
+        return this.currentValue;
+    }
+
     public void increment() {
         this.setValue(this.currentValue + this.unit);
     }
