@@ -1,5 +1,7 @@
-NumberPicker [![Build Status](https://travis-ci.org/travijuu/NumberPicker.svg?branch=master)](https://travis-ci.org/travijuu/NumberPicker)
+NumberPicker 
 ============
+
+[![Build Status](https://travis-ci.org/travijuu/NumberPicker.svg?branch=master)](https://travis-ci.org/travijuu/NumberPicker) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.travijuu/numberpicker/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.travijuu/numberpicker)
 
 A simple customizable NumberPicker for Android.
 
