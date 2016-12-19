@@ -20,9 +20,13 @@ public class ActionListener implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (this.action == ActionEnum.INCREMENT)
-            this.layout.increment();
-        else
-            this.layout.decrement();
+        switch (this.action) {
+            case INCREMENT:
+                this.layout.increment();
+                break;
+            case DECREMENT:
+                this.layout.decrement();
+                break;
+        }
     }
 }

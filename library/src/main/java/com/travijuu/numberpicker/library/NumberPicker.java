@@ -10,8 +10,10 @@ import android.widget.TextView;
 
 import com.travijuu.numberpicker.library.Enums.ActionEnum;
 import com.travijuu.numberpicker.library.Interface.LimitExceededListener;
+import com.travijuu.numberpicker.library.Interface.ValueChangedListener;
 import com.travijuu.numberpicker.library.Listener.ActionListener;
 import com.travijuu.numberpicker.library.Listener.DefaultLimitExceededListener;
+import com.travijuu.numberpicker.library.Listener.DefaultValueChangedListener;
 
 /**
  * Created by travijuu on 26/05/16.
@@ -40,6 +42,7 @@ public class NumberPicker extends LinearLayout {
 
     // listeners
     private LimitExceededListener limitExceededListener;
+    private ValueChangedListener valueChangedListener;
 
     public NumberPicker(Context context) {
         super(context, null);
@@ -80,11 +83,14 @@ public class NumberPicker extends LinearLayout {
         this.incrementButton = (Button) findViewById(R.id.increment);
         this.displayTextView = (TextView) findViewById(R.id.display);
 
+        // register button click listeners
         this.incrementButton.setOnClickListener(new ActionListener(this, ActionEnum.INCREMENT));
         this.decrementButton.setOnClickListener(new ActionListener(this, ActionEnum.DECREMENT));
 
         // init listener for exceeding upper and lower limits
         this.setLimitExceededListener(new DefaultLimitExceededListener());
+        // init listener for increment&decrement
+        this.setValueChangedListener(new DefaultValueChangedListener());
 
         // update ui view
         this.updateView();
@@ -122,9 +128,13 @@ public class NumberPicker extends LinearLayout {
         this.limitExceededListener = limitExceededListener;
     }
 
+    public void setValueChangedListener(ValueChangedListener valueChangedListener) {
+        this.valueChangedListener = valueChangedListener;
+    }
+
     public void setValue(int value) {
         if (value < this.minValue || value > this.maxValue) {
-            limitExceededListener.limitExceeded(value < this.minValue ? this.minValue : this.maxValue, value);
+            this.limitExceededListener.limitExceeded(value < this.minValue ? this.minValue : this.maxValue, value);
             return;
         }
 
@@ -137,10 +147,28 @@ public class NumberPicker extends LinearLayout {
     }
 
     public void increment() {
-        this.setValue(this.currentValue + this.unit);
+        this.changeValueBy(this.unit);
+    }
+
+    public void increment(int unit) {
+        this.changeValueBy(unit);
     }
 
     public void decrement() {
-        this.setValue(this.currentValue - this.unit);
+        this.changeValueBy(-this.unit);
+    }
+
+    public void decrement(int unit) {
+        this.changeValueBy(-unit);
+    }
+
+    private void changeValueBy(int unit) {
+        int oldValue = this.getValue();
+
+        this.setValue(this.currentValue + unit);
+
+        if (oldValue != this.getValue()) {
+            this.valueChangedListener.valueChanged(this.getValue(), unit > 0 ? ActionEnum.INCREMENT : ActionEnum.DECREMENT);
+        }
     }
 }
