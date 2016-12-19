@@ -11,7 +11,7 @@ public class DefaultLimitExceededListener implements LimitExceededListener {
 
     public void limitExceeded(int limit, int exceededValue) {
 
-        String message = String.format("Value cannot be setted to %d because the limit is %d.", limit, exceededValue);
+        String message = String.format("NumberPicker cannot set to %d because the limit is %d.", exceededValue, limit);
         Log.v(this.getClass().getSimpleName(), message);
     }
 }

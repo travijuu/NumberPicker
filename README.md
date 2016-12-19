@@ -12,14 +12,14 @@ Download
 
 Download [the latest JAR][2] or grab via Gradle:
 ```groovy
-compile 'com.travijuu.numberpicker:numberpicker:1.0.4'
+compile 'com.travijuu.numberpicker:numberpicker:1.0.5'
 ```
 or Maven:
 ```xml
 <dependency>
   <groupId>com.travijuu.numberpicker</groupId>
   <artifactId>numberpicker</artifactId>
-  <version>1.0.4</version>
+  <version>1.0.5</version>
 </dependency>
 ```
 
@@ -139,27 +139,47 @@ Getters/Setters
 - getMax()
 - setUnit(int value)
 - getUnit()
+- setValue(int value)
+- getValue()
 
 Useful functions
 --------
-- setValue(int value)
 - increment()
+- increment(int unit)
 - decrement()
+- decrement(int unit)
 
 Listeners
 ---------
 - setLimitExceededListener(LimitExceededListener limitExceededListener)
 
-this informs you when you try to set lower or higer than the given min/max limits
+**LimitExceededListener** is triggered when you try to set lower or higher than the given min/max limits
 
 ```java
 public class DefaultLimitExceededListener implements LimitExceededListener {
 
     public void limitExceeded(int limit, int exceededValue) {
 
-        String message = String.format("Value cannot be setted to %d because the limit is %d.", limit, exceededValue);
+        String message = String.format("NumberPicker cannot set to %d because the limit is %d.", exceededValue, limit);
         Log.v(this.getClass().getSimpleName(), message);
     }
 }
 ```
 
+- setValueChangedListener(ValueChangedListener valueChangedListener)
+
+**ValueChangedListener** is triggered when the NumberPicker is incremented or decremented.
+
+*Note:* `setValue`method will not trigger this listener.
+
+```java
+public class DefaultValueChangedListener implements ValueChangedListener {
+
+    public void valueChanged(int value, ActionEnum action) {
+
+        String actionText = action == ActionEnum.INCREMENT ? "incremented" : "decremented";
+        String message = String.format("NumberPicker is %s to %d", actionText, value);
+        Log.v(this.getClass().getSimpleName(), message);
+    }
+}
+```

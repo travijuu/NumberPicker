@@ -5,5 +5,5 @@ package com.travijuu.numberpicker.library.Interface;
  */
 public interface LimitExceededListener {
 
-    public void limitExceeded(int limit, int exceededValue);
+    void limitExceeded(int limit, int exceededValue);
 }
