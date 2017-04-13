@@ -124,14 +124,6 @@ public class NumberPicker extends LinearLayout {
         return this.maxValue;
     }
 
-    public void setLimitExceededListener(LimitExceededListener limitExceededListener) {
-        this.limitExceededListener = limitExceededListener;
-    }
-
-    public void setValueChangedListener(ValueChangedListener valueChangedListener) {
-        this.valueChangedListener = valueChangedListener;
-    }
-
     public void setValue(int value) {
         if (value < this.minValue || value > this.maxValue) {
             this.limitExceededListener.limitExceeded(value < this.minValue ? this.minValue : this.maxValue, value);
@@ -144,6 +136,22 @@ public class NumberPicker extends LinearLayout {
 
     public int getValue() {
         return this.currentValue;
+    }
+
+    public void setLimitExceededListener(LimitExceededListener limitExceededListener) {
+        this.limitExceededListener = limitExceededListener;
+    }
+
+    public void setValueChangedListener(ValueChangedListener valueChangedListener) {
+        this.valueChangedListener = valueChangedListener;
+    }
+
+    public void setActionEnabled(ActionEnum action, boolean enabled) {
+        if (action == ActionEnum.INCREMENT) {
+            this.incrementButton.setEnabled(enabled);
+        } else if (action == ActionEnum.DECREMENT) {
+            this.decrementButton.setEnabled(enabled);
+        }
     }
 
     public void increment() {
