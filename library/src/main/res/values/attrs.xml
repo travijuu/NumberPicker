@@ -7,6 +7,7 @@
         <attr name="value" format="integer"/>
         <attr name="unit" format="integer" />
         <attr name="custom_layout" format="reference" />
+        <attr name="focusable" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="Themes">

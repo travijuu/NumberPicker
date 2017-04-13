@@ -12,14 +12,14 @@ Download
 
 Download [the latest JAR][2] or grab via Gradle:
 ```groovy
-compile 'com.travijuu.numberpicker:numberpicker:1.0.5'
+compile 'com.travijuu.numberpicker:numberpicker:1.0.6'
 ```
 or Maven:
 ```xml
 <dependency>
   <groupId>com.travijuu.numberpicker</groupId>
   <artifactId>numberpicker</artifactId>
-  <version>1.0.5</version>
+  <version>1.0.6</version>
 </dependency>
 ```
 
@@ -47,7 +47,8 @@ Add NumberPicker component in your XML layout
         numberpicker:max="10"
         numberpicker:value="-5"
         numberpicker:unit="1"
-        numberpicker:custom_layout="@layout/number_picker_custom_layout"  />
+        numberpicker:custom_layout="@layout/number_picker_custom_layout"
+        numberpicker:focusable="false" />
 
 </LinearLayout>
 
@@ -88,8 +89,7 @@ Example XML layout:
         android:layout_height="match_parent"
         android:text="1"
         android:textColor="@android:color/black"
-        android:focusable="false"
-        android:inputType="none"
+        android:inputType="number"
         android:id="@+id/display"
         android:gravity="center"
         />
@@ -141,6 +141,8 @@ Getters/Setters
 - getUnit()
 - setValue(int value)
 - getValue()
+- setActionEnabled(ActionEnum action, boolean enabled)
+- setDisplayFocusable(boolean focusable)
 
 Useful functions
 --------
@@ -183,3 +185,9 @@ public class DefaultValueChangedListener implements ValueChangedListener {
     }
 }
 ```
+
+- setOnEditorActionListener(OnEditorActionListener onEditorActionListener)
+
+**OnEditorActionListener** is triggered when you click "**done**" button on keyboard after you edit current value.
+
+*Note:* "**done**" button can be changed on xml so this listener should be overrided according to new IME option. 

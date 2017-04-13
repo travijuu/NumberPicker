@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import com.travijuu.numberpicker.library.Interface.ValueChangedListener;
 import com.travijuu.numberpicker.library.Listener.ActionListener;
 import com.travijuu.numberpicker.library.Listener.DefaultLimitExceededListener;
 import com.travijuu.numberpicker.library.Listener.DefaultValueChangedListener;
+import com.travijuu.numberpicker.library.Listener.DefaultOnEditorActionListener;
 
 /**
  * Created by travijuu on 26/05/16.
@@ -26,6 +28,7 @@ public class NumberPicker extends LinearLayout {
     private final int DEFAULT_VALUE = 1;
     private final int DEFAULT_UNIT = 1;
     private final int DEFAULT_LAYOUT = R.layout.number_picker_layout;
+    private final boolean DEFAULT_FOCUSABLE = false;
 
     // required variables
     private int minValue;
@@ -33,12 +36,13 @@ public class NumberPicker extends LinearLayout {
     private int unit;
     private int currentValue;
     private int layout;
+    private boolean focusable;
 
     // ui components
     private Context mContext;
     private Button decrementButton;
     private Button incrementButton;
-    private TextView displayTextView;
+    private EditText displayEditText;
 
     // listeners
     private LimitExceededListener limitExceededListener;
@@ -67,6 +71,7 @@ public class NumberPicker extends LinearLayout {
         this.currentValue = attributes.getInteger(R.styleable.NumberPicker_value, this.DEFAULT_VALUE);
         this.unit = attributes.getInteger(R.styleable.NumberPicker_unit, this.DEFAULT_UNIT);
         this.layout = attributes.getResourceId(R.styleable.NumberPicker_custom_layout, this.DEFAULT_LAYOUT);
+        this.focusable = attributes.getBoolean(R.styleable.NumberPicker_focusable, this.DEFAULT_FOCUSABLE);
         this.mContext = context;
 
         // if current value is greater than the max. value, decrement it to the max. value
@@ -81,23 +86,27 @@ public class NumberPicker extends LinearLayout {
         // init ui components
         this.decrementButton = (Button) findViewById(R.id.decrement);
         this.incrementButton = (Button) findViewById(R.id.increment);
-        this.displayTextView = (TextView) findViewById(R.id.display);
+        this.displayEditText = (EditText) findViewById(R.id.display);
 
-        // register button click listeners
+        // register button click and action listeners
         this.incrementButton.setOnClickListener(new ActionListener(this, ActionEnum.INCREMENT));
         this.decrementButton.setOnClickListener(new ActionListener(this, ActionEnum.DECREMENT));
+        this.setOnEditorActionListener(new DefaultOnEditorActionListener(this));
 
         // init listener for exceeding upper and lower limits
         this.setLimitExceededListener(new DefaultLimitExceededListener());
         // init listener for increment&decrement
         this.setValueChangedListener(new DefaultValueChangedListener());
 
+        // set default display mode
+        this.setDisplayFocusable(this.focusable);
+
         // update ui view
         this.updateView();
     }
 
     private void updateView() {
-        this.displayTextView.setText(Integer.toString(this.currentValue));
+        this.displayEditText.setText(Integer.toString(this.currentValue));
     }
 
     public void setMin(int value) {
@@ -146,11 +155,24 @@ public class NumberPicker extends LinearLayout {
         this.valueChangedListener = valueChangedListener;
     }
 
+    public void setOnEditorActionListener(TextView.OnEditorActionListener onEditorActionListener) {
+        this.displayEditText.setOnEditorActionListener(onEditorActionListener);
+    }
+
     public void setActionEnabled(ActionEnum action, boolean enabled) {
         if (action == ActionEnum.INCREMENT) {
             this.incrementButton.setEnabled(enabled);
         } else if (action == ActionEnum.DECREMENT) {
             this.decrementButton.setEnabled(enabled);
+        }
+    }
+
+    public void setDisplayFocusable(boolean focusable) {
+        this.displayEditText.setFocusable(focusable);
+
+        // required for making EditText focusable
+        if (focusable) {
+            this.displayEditText.setFocusableInTouchMode(true);
         }
     }
 
