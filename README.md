@@ -17,9 +17,10 @@ compile 'com.travijuu.numberpicker:numberpicker:1.0.6'
 or Maven:
 ```xml
 <dependency>
-  <groupId>com.travijuu.numberpicker</groupId>
+  <groupId>com.github.travijuu</groupId>
   <artifactId>numberpicker</artifactId>
   <version>1.0.6</version>
+  <type>aar</type>
 </dependency>
 ```
 
