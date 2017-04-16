@@ -12,7 +12,7 @@ Download
 
 Download [the latest JAR][2] or grab via Gradle:
 ```groovy
-compile 'com.travijuu.numberpicker:numberpicker:1.0.6'
+compile 'com.github.travijuu:numberpicker:1.0.6''
 ```
 or Maven:
 ```xml
