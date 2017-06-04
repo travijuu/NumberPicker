@@ -14,6 +14,7 @@ import com.travijuu.numberpicker.library.Interface.LimitExceededListener;
 import com.travijuu.numberpicker.library.Interface.ValueChangedListener;
 import com.travijuu.numberpicker.library.Listener.ActionListener;
 import com.travijuu.numberpicker.library.Listener.DefaultLimitExceededListener;
+import com.travijuu.numberpicker.library.Listener.DefaultOnFocusChangeListener;
 import com.travijuu.numberpicker.library.Listener.DefaultValueChangedListener;
 import com.travijuu.numberpicker.library.Listener.DefaultOnEditorActionListener;
 
@@ -97,16 +98,28 @@ public class NumberPicker extends LinearLayout {
         this.setLimitExceededListener(new DefaultLimitExceededListener());
         // init listener for increment&decrement
         this.setValueChangedListener(new DefaultValueChangedListener());
+        // init listener for focus change
+        this.setOnFocusChangeListener(new DefaultOnFocusChangeListener(this));
+        // init listener for done action in keyboard
+        this.setOnEditorActionListener(new DefaultOnEditorActionListener(this));
 
         // set default display mode
         this.setDisplayFocusable(this.focusable);
 
         // update ui view
-        this.updateView();
+        this.refresh();
     }
 
-    private void updateView() {
+    public void refresh() {
         this.displayEditText.setText(Integer.toString(this.currentValue));
+    }
+
+    public void clearFocus() {
+        this.displayEditText.clearFocus();
+    }
+
+    public boolean valueIsAllowed(Integer value) {
+        return (value >= this.minValue && value <= this.maxValue);
     }
 
     public void setMin(int value) {
@@ -134,13 +147,13 @@ public class NumberPicker extends LinearLayout {
     }
 
     public void setValue(int value) {
-        if (value < this.minValue || value > this.maxValue) {
+        if (!this.valueIsAllowed(value)) {
             this.limitExceededListener.limitExceeded(value < this.minValue ? this.minValue : this.maxValue, value);
             return;
         }
 
         this.currentValue = value;
-        this.updateView();
+        this.refresh();
     }
 
     public int getValue() {
@@ -151,12 +164,24 @@ public class NumberPicker extends LinearLayout {
         this.limitExceededListener = limitExceededListener;
     }
 
+    public LimitExceededListener getLimitExceededListener() {
+        return limitExceededListener;
+    }
+
     public void setValueChangedListener(ValueChangedListener valueChangedListener) {
         this.valueChangedListener = valueChangedListener;
     }
 
+    public ValueChangedListener getValueChangedListener() {
+        return valueChangedListener;
+    }
+
     public void setOnEditorActionListener(TextView.OnEditorActionListener onEditorActionListener) {
         this.displayEditText.setOnEditorActionListener(onEditorActionListener);
+    }
+
+    public void setOnFocusChangeListener(OnFocusChangeListener onFocusChangeListener) {
+        this.displayEditText.setOnFocusChangeListener(onFocusChangeListener);
     }
 
     public void setActionEnabled(ActionEnum action, boolean enabled) {
