@@ -25,7 +25,7 @@ public class NumberPicker extends LinearLayout {
 
     // default values
     private final int DEFAULT_MIN = 0;
-    private final int DEFAULT_MAX = 99999999;
+    private final int DEFAULT_MAX = 999999;
     private final int DEFAULT_VALUE = 1;
     private final int DEFAULT_UNIT = 1;
     private final int DEFAULT_LAYOUT = R.layout.number_picker_layout;
@@ -117,7 +117,7 @@ public class NumberPicker extends LinearLayout {
         this.displayEditText.clearFocus();
     }
 
-    public boolean valueIsAllowed(Integer value) {
+    public boolean valueIsAllowed(int value) {
         return (value >= this.minValue && value <= this.maxValue);
     }
 
@@ -164,7 +164,7 @@ public class NumberPicker extends LinearLayout {
     }
 
     public LimitExceededListener getLimitExceededListener() {
-        return limitExceededListener;
+        return this.limitExceededListener;
     }
 
     public void setValueChangedListener(ValueChangedListener valueChangedListener) {
@@ -172,7 +172,7 @@ public class NumberPicker extends LinearLayout {
     }
 
     public ValueChangedListener getValueChangedListener() {
-        return valueChangedListener;
+        return this.valueChangedListener;
     }
 
     public void setOnEditorActionListener(TextView.OnEditorActionListener onEditorActionListener) {
