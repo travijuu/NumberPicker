@@ -2,6 +2,7 @@ NumberPicker
 ============
 
 [![Build Status](https://travis-ci.org/travijuu/NumberPicker.svg?branch=master)](https://travis-ci.org/travijuu/NumberPicker) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.travijuu/numberpicker/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.travijuu/numberpicker)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-NumberPicker-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5838)
 
 A simple customizable NumberPicker for Android.
 
