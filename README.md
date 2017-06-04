@@ -7,19 +7,19 @@ A simple customizable NumberPicker for Android.
 
 <img src="https://raw.githubusercontent.com/travijuu/NumberPicker/master/images/numberpicker.png" width=450/>
 
-Download
+Installation
 --------
 
-Download [the latest JAR][2] or grab via Gradle:
+via Gradle:
 ```groovy
-compile 'com.github.travijuu:numberpicker:1.0.6'
+compile 'com.github.travijuu:numberpicker:1.0.7'
 ```
 or Maven:
 ```xml
 <dependency>
   <groupId>com.github.travijuu</groupId>
   <artifactId>numberpicker</artifactId>
-  <version>1.0.6</version>
+  <version>1.0.7</version>
   <type>aar</type>
 </dependency>
 ```
@@ -48,12 +48,50 @@ Add NumberPicker component in your XML layout
         numberpicker:max="10"
         numberpicker:value="-5"
         numberpicker:unit="1"
-        numberpicker:custom_layout="@layout/number_picker_custom_layout"
-        numberpicker:focusable="false" />
+        numberpicker:focusable="false"
+        numberpicker:custom_layout="@layout/number_picker_custom_layout" />
 
 </LinearLayout>
 
 ```
+
+*MainActivity.java*
+
+```java
+import com.travijuu.numberpicker.library.NumberPicker;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        NumberPicker numberPicker = (NumberPicker) findViewById(R.id.number_picker);
+        numberPicker.setMax(15);
+        numberPicker.setMin(5);
+        numberPicker.setUnit(2);
+        numberPicker.setValue(10);
+    }
+}
+
+```
+
+XML Attributes
+--------------
+
+| Name          | Type    | Default |
+|---------------|---------|---------|
+| min           | int     | 0       |
+| max           | int     | 999999  |
+| value         | int     | 1       |
+| unit          | int     | 1       |
+| focusable     | boolean | false   |
+| custom_layout | layout  | @layout/number_picker_layout |
+
+
+Layout Customization
+--------------------
 
 if you want to customize your NumberPicker layout you can create your own.
 
@@ -106,57 +144,76 @@ Example XML layout:
 </LinearLayout>
 ```
 
-**Another way to setup NumberPicker:**
+Methods
+-------
 
-*MainActivity.java*
+Here is the list of methods with definitions.
 
-```java
-import com.travijuu.numberpicker.library.NumberPicker;
+### setMin(int value)
+Sets minimum value allowed
 
-public class MainActivity extends AppCompatActivity {
+### getMin()
+Gets minimum value
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+### setMax(int value)
+Sets maximum value allowed
 
-        NumberPicker numberPicker = (NumberPicker) findViewById(R.id.number_picker);
-        numberPicker.setMax(15);
-        numberPicker.setMin(5);
-        numberPicker.setUnit(2);
-        numberPicker.setValue(10);
-    }
-}
+### getMax()
+Gets maximum value allowed
 
-```
+### setUnit(int value)
+Sets unit value for increment/decrement operation
 
-Here is the list of functions.
+### getUnit()
+Gets unit value 
 
-Getters/Setters
---------
-- setMin(int value)
-- getMin()
-- setMax(int value)
-- getMax()
-- setUnit(int value)
-- getUnit()
-- setValue(int value)
-- getValue()
-- setActionEnabled(ActionEnum action, boolean enabled)
-- setDisplayFocusable(boolean focusable)
+### setValue(int value)
+Sets NumberPicker current value 
 
-Useful functions
---------
-- increment()
-- increment(int unit)
-- decrement()
-- decrement(int unit)
+### getValue()
+Gets NumberPicker current value
+
+### setActionEnabled(ActionEnum action, boolean enabled)
+Enables or disables Increment/Decrement buttons
+
+### setDisplayFocusable(boolean focusable)
+Enables or disables NumberPicker editable via keyboard
+
+### increment()
+NumberPicker will be incremented by `defined` unit value
+
+### increment(int unit)
+NumberPicker will be incremented by `given` unit value
+
+### decrement()
+NumberPicker will be decremented by `defined` unit vale
+
+### decrement(int unit)
+NumberPicker will be decremented by `given` unit value
+
+### refresh()
+NumberPicker will be refreshed with already defined value
+
+### clearFocus()
+NumberPicker will lose the focus
+
+### valueIsAllowed(int value)
+Checks whether given value is acceptable or not
+
+### setLimitExceededListener(LimitExceededListener limitExceededListener)
+
+### setValueChangedListener(ValueChangedListener valueChangedListener)
+
+### setOnEditorActionListener(OnEditorActionListener onEditorActionListener)
+
+### setOnFocusChangeListener(OnFocusChangeListener onFocusChangeListener)
 
 Listeners
 ---------
-- setLimitExceededListener(LimitExceededListener limitExceededListener)
 
-**LimitExceededListener** is triggered when you try to set lower or higher than the given min/max limits
+### LimitExceededListener
+
+This is triggered when you try to set lower or higher than the given min/max limits
 
 ```java
 public class DefaultLimitExceededListener implements LimitExceededListener {
@@ -169,26 +226,29 @@ public class DefaultLimitExceededListener implements LimitExceededListener {
 }
 ```
 
-- setValueChangedListener(ValueChangedListener valueChangedListener)
+### ValueChangedListener
 
-**ValueChangedListener** is triggered when the NumberPicker is incremented or decremented.
+This is triggered when the NumberPicker is incremented or decremented.
 
-*Note:* `setValue`method will not trigger this listener.
+*Note:* `setValue` method will not trigger this listener.
 
 ```java
 public class DefaultValueChangedListener implements ValueChangedListener {
 
     public void valueChanged(int value, ActionEnum action) {
 
-        String actionText = action == ActionEnum.INCREMENT ? "incremented" : "decremented";
+        String actionText = action == ActionEnum.MANUAL ? "manually set" : (action == ActionEnum.INCREMENT ? "incremented" : "decremented");
         String message = String.format("NumberPicker is %s to %d", actionText, value);
         Log.v(this.getClass().getSimpleName(), message);
     }
 }
 ```
 
-- setOnEditorActionListener(OnEditorActionListener onEditorActionListener)
+### OnEditorActionListener
 
-**OnEditorActionListener** is triggered when you click "**done**" button on keyboard after you edit current value.
+This is triggered when you click "**done**" button on keyboard after you edit current value.
 
 *Note:* "**done**" button can be changed on xml so this listener should be overrided according to new IME option. 
+
+### OnFocusChangeListener
+This is triggered when `clearFocus()` is called which helps to set new value when the focus lost
