@@ -90,9 +90,8 @@ public class NumberPicker extends LinearLayout {
         this.displayEditText = (EditText) findViewById(R.id.display);
 
         // register button click and action listeners
-        this.incrementButton.setOnClickListener(new ActionListener(this, ActionEnum.INCREMENT));
-        this.decrementButton.setOnClickListener(new ActionListener(this, ActionEnum.DECREMENT));
-        this.setOnEditorActionListener(new DefaultOnEditorActionListener(this));
+        this.incrementButton.setOnClickListener(new ActionListener(this, this.displayEditText, ActionEnum.INCREMENT));
+        this.decrementButton.setOnClickListener(new ActionListener(this, this.displayEditText, ActionEnum.DECREMENT));
 
         // init listener for exceeding upper and lower limits
         this.setLimitExceededListener(new DefaultLimitExceededListener());
