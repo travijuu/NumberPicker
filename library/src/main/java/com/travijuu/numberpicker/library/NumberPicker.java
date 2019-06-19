@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -41,8 +42,8 @@ public class NumberPicker extends LinearLayout {
 
     // ui components
     private Context mContext;
-    private Button decrementButton;
-    private Button incrementButton;
+    private View decrementButton;
+    private View incrementButton;
     private EditText displayEditText;
 
     // listeners
@@ -85,8 +86,8 @@ public class NumberPicker extends LinearLayout {
         LayoutInflater.from(this.mContext).inflate(layout, this, true);
 
         // init ui components
-        this.decrementButton = (Button) findViewById(R.id.decrement);
-        this.incrementButton = (Button) findViewById(R.id.increment);
+        this.decrementButton = findViewById(R.id.decrement);
+        this.incrementButton = findViewById(R.id.increment);
         this.displayEditText = (EditText) findViewById(R.id.display);
 
         // register button click and action listeners
